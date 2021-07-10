@@ -1,0 +1,103 @@
+* {
+  box-sizing: border-box;
+}
+
+.crud_app {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 35%;
+  height: 100%;
+}
+
+.form > div {
+  margin: 5px;
+}
+
+.input-group,
+.input-group-field {
+  width: 100%;
+}
+
+.input-group-title {
+  display: block;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.input-group-field {
+  height: 2.2rem;
+  border: 1px solid deepskyblue;
+  border-radius: 5px;
+}
+
+.input-group > .button {
+  background-color: #0366ee;
+  border: 1px solid #0366ee;
+  color: white;
+  padding: 5px 20px;
+  border-radius: 4px;
+  font-size: medium;
+  font-weight: bold;
+}
+
+.table {
+  min-width: 40%;
+  height: 100%;
+}
+
+.table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table table tr {
+  height: 3rem;
+}
+
+.table table th {
+  min-width: 2rem;
+  text-align: left;
+}
+
+.table table thead tr th {
+  border-bottom: 2px solid #0366ee;
+}
+
+.table tr td {
+  border-bottom: 1px solid #0366ee;
+}
+
+.table button {
+  padding: 5px 20px;
+  margin: 0px 5px;
+  background-color: #0366ee;
+  color: white;
+  border: 1px solid white;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+@media screen and (max-width: 500px) {
+  .form,
+  .table {
+    width: 80%;
+  }
+}

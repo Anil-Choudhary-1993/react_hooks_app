@@ -1,0 +1,49 @@
+.container {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  margin: auto 20rem;
+}
+
+.input,
+[type='text'] {
+  width: 100%;
+  font-size: 20px;
+}
+
+[type='text'] {
+  padding: 0.5rem;
+}
+
+.suggestions {
+  width: 100%;
+  max-height: 100px;
+  overflow-y: auto;
+  border: 1px solid cadetblue;
+  scroll-behavior: smooth;
+}
+
+.highlight {
+  background-color: cornflowerblue;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  padding: 2px 4px 8px 8px;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: serif;
+  border-bottom: 1px solid cadetblue;
+}
+
+li:last-of-type {
+  border-bottom: none;
+}
+
+h1 {
+  text-align: center;
+}

@@ -1,0 +1,25 @@
+.navbar > ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  list-style: none;
+}
+
+.navbar > ul > li {
+  border: none;
+  font-size: 22px;
+  margin: 0px 3rem;
+}
+
+.navbar > ul > li.active {
+  font-weight: bold;
+  background-color: darkorchid;
+  background-color: gainsboro;
+  border-radius: 8px;
+  padding: 6px 11px;
+}
+
+.navbar > ul > li > a {
+  text-decoration: none;
+}
