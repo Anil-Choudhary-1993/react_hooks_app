@@ -9,6 +9,7 @@ import Navbar from './Navbar';
 import CrudApp from './CrudApp';
 import Autocomplete from './Autocomplete';
 import SeacrhList from './SearchListApp';
+import Counter from './Counter';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
     <Router>
       <Navbar />
       <Switch>
+        <Route exact path="/counter" component={Counter} />
         <Route exact path="/crud" component={CrudApp} />
         <Route exact path="/search" component={SeacrhList} />
         <Route exact path="/" component={Autocomplete} />

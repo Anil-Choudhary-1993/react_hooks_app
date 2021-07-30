@@ -1,0 +1,14 @@
+.container {
+  margin: 5rem 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+:is(.container > .controls) button,
+input {
+  padding: 1rem 2rem;
+  font-size: medium;
+  font-weight: bold;
+  text-align: center;
+}
