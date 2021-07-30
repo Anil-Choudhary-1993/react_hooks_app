@@ -65,10 +65,12 @@ export default function Autocomplete() {
       if (currentSuggestionIndex > 0) {
         currentSuggestionIndex--;
       }
-      if (currentSuggestionIndex === 0) {
-        suggRef.current.scrollTop = 0;
-      } else {
-        suggRef.current.scrollTop -= 20;
+      if (suggRef?.current?.scrollTop) {
+        if (currentSuggestionIndex === 0) {
+          suggRef.current.scrollTop = 0;
+        } else {
+          suggRef.current.scrollTop -= 20;
+        }
       }
       setState({
         ...state,
@@ -79,10 +81,12 @@ export default function Autocomplete() {
       if (currentSuggestionIndex < state.filteredSuggestions.length - 1) {
         currentSuggestionIndex++;
       }
-      if (currentSuggestionIndex === state.filteredSuggestions.length - 1) {
-        suggRef.current.scrollTop = suggRef.current.scrollHeight;
-      } else {
-        suggRef.current.scrollTop += 20
+      if (suggRef?.current?.scrollTop) {
+        if (currentSuggestionIndex === state.filteredSuggestions.length - 1) {
+          suggRef.current.scrollTop = suggRef.current.scrollHeight;
+        } else {
+          suggRef.current.scrollTop += 20
+        }
       }
       setState({
         ...state,
