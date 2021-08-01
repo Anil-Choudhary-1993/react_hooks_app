@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, getByRole, render, screen } from '@testing-library/react';
+import { fireEvent, getByRole, render, screen, wait, waitFor } from '@testing-library/react';
 import Crud from './index';
 
 describe('Testing Crud app', () => {
@@ -168,56 +168,99 @@ describe('Testing Crud app', () => {
 
     it(`Type name and username and click on add user should clear all form fields and 
         append a new row in the table and click on edit action will add the row content
-        to form and click on add user again will show the updated data in form`, () => {
+        to form and click on add user again will show the updated data in form`, async () => {
       let NameField = screen.getByPlaceholderText('Name');
       let UserNameField = screen.getByPlaceholderText('UserName');
       let AddUserButton = screen.getByRole('button', { name: 'Add User' });
       let AllRows = screen.getAllByRole('row');
+
+      expect(AddUserButton).toBeInTheDocument();
       expect(AllRows.length).toBe(1);
+
       fireEvent.change(NameField, {
         target: {
           value: 'Rohit'
         }
       });
       expect(NameField.value).toBe('Rohit');
+
       fireEvent.change(UserNameField, {
         target: {
           value: 'rohit_abc'
         }
       });
       expect(UserNameField.value).toBe('rohit_abc');
+
       fireEvent.click(AddUserButton);
+
       expect(NameField.value).toBe('');
       expect(UserNameField.value).toBe('');
+
       AllRows = screen.getAllByRole('row');
       expect(AllRows.length).toBe(2);
+
       let TableBodyContent = Array.from(AllRows[1].children);
       expect(TableBodyContent[0].innerHTML).toBe('Rohit');
       expect(TableBodyContent[1].innerHTML).toBe('rohit_abc');
+      expect(screen.getByRole('button', { name: 'Edit' })).not.toBeDisabled();
+      expect(screen.getByRole('button', { name: 'Delete' })).not.toBeDisabled();
+
+
+
       expect(screen.getByRole('button', { name: 'Edit' })).toBeInTheDocument();
       expect(screen.getByRole('button', { name: 'Delete' })).toBeInTheDocument();
+
       fireEvent.click(screen.getByRole('button', { name: 'Edit' }));
+
+      await waitFor(() => {
+        expect(screen.queryByRole('button', { name: 'Edit User' })).toBeInTheDocument();
+      });
+
+      await waitFor(() => {
+        expect(screen.queryByRole('button', { name: 'Add User' })).not.toBeInTheDocument();
+      });
+
+      expect(screen.getByRole('button', { name: 'Edit' })).toBeDisabled();
+      expect(screen.getByRole('button', { name: 'Delete' })).toBeDisabled();
+
       AllRows = screen.getAllByRole('row');
       expect(AllRows.length).toBe(2);
       expect(NameField.value).toBe('Rohit');
       expect(UserNameField.value).toBe('rohit_abc');
+
       fireEvent.change(NameField, {
         target: {
           value: 'Vijay'
         }
       });
+      expect(NameField.value).toBe('Vijay');
+
       fireEvent.change(UserNameField, {
         target: {
           value: 'vijay_shekhar'
         }
       });
-      expect(NameField.value).toBe('Vijay');
       expect(UserNameField.value).toBe('vijay_shekhar');
-      fireEvent.click(AddUserButton);
+
+      fireEvent.click(screen.getByRole('button', { name: 'Edit User' }));
+
+      await waitFor(() => {
+        expect(screen.queryByRole('button', { name: 'Edit User' })).not.toBeInTheDocument();
+      });
+
+      await waitFor(() => {
+        expect(screen.getByRole('button', { name: 'Add User' })).toBeInTheDocument();
+      });
+
       expect(NameField.value).toBe('');
       expect(UserNameField.value).toBe('');
+
       expect(TableBodyContent[0].innerHTML).toBe('Vijay');
       expect(TableBodyContent[1].innerHTML).toBe('vijay_shekhar');
+
+      expect(screen.getByRole('button', { name: 'Edit' })).not.toBeDisabled();
+      expect(screen.getByRole('button', { name: 'Delete' })).not.toBeDisabled();
+
     })
 
   })

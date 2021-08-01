@@ -41,7 +41,9 @@ function Form() {
         <input className="input-group-field" type="text" placeholder="UserName" value={userName} onChange={e => setUserName(e.target.value)} />
       </div>
       <div className="input-group">
-        <button className="button" onClick={saveUser}>Add User</button>
+        <button className="button" onClick={saveUser}>
+          {state.user.name && state.user.userName ? 'Edit User' : 'Add User'}
+        </button>
       </div>
     </div>
   )

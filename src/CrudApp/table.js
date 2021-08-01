@@ -26,8 +26,14 @@ function Table() {
                   {result.userName}
                 </td>
                 <td>
-                  <button onClick={() => dispatch(editUser(result.id))}>Edit</button>
-                  <button onClick={() => dispatch(deleteUser(result.id))}>Delete</button>
+                  <button
+                    style={state.user.name ? { opacity: 0.2 } : {}}
+                    disabled={state.user.name ? true : false}
+                    onClick={() => dispatch(editUser(result.id))}>Edit</button>
+                  <button
+                    style={state.user.name ? { opacity: 0.2 } : {}}
+                    disabled={state.user.userName ? true : false}
+                    onClick={() => dispatch(deleteUser(result.id))}>Delete</button>
                 </td>
               </tr>
             )
