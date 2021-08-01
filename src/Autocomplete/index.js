@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.css';
 
-const suggestions = [
+const Data = [
   "Mango",
   "Grapes",
   "Musk",
@@ -15,20 +15,20 @@ const suggestions = [
   "watermelon"
 ];
 
-export default function Autocomplete() {
+export default function Autocomplete({ suggestions = Data }) {
   let suggRef = React.useRef();
   let [state, setState] = React.useState({
     showSuggestion: false,
     filteredSuggestions: [],
     input: '',
-    currentSuggestionIndex: 0
+    currentSuggestionIndex: -1
   });
 
   const handleChange = (e) => {
     let input = e.target.value.trim(),
       showSuggestion = false,
       filteredSuggestions = [],
-      currentSuggestionIndex = 0;
+      currentSuggestionIndex = -1;
     if (input) {
       filteredSuggestions = suggestions.filter(v => v.toLowerCase().indexOf(input.toLowerCase()) > -1);
       showSuggestion = true;
@@ -43,12 +43,12 @@ export default function Autocomplete() {
     })
   }
 
-  const selectWord = (e) => {
+  const selectWord = (value) => {
     setState({
-      input: e.target.innerText,
+      input: value,
       showSuggestion: false,
       filteredSuggestions: [],
-      currentSuggestionIndex: 0
+      currentSuggestionIndex: -1
     })
   }
 
@@ -99,11 +99,11 @@ export default function Autocomplete() {
     <>
       <h1>
         React Autocomplete Demo
-        Start typing and experience the autocomplete wizardry!
       </h1>
       <div className="container">
         <div className="input_field">
           <input
+            aria-label="autocompleteFilter"
             type="text"
             value={state.input}
             onChange={handleChange}
@@ -116,7 +116,7 @@ export default function Autocomplete() {
             {
               state.filteredSuggestions.map((sug, index) => <li
                 key={index}
-                onClick={selectWord}
+                onClick={() => selectWord(sug)}
                 className={state.currentSuggestionIndex === index ? 'highlight' : ''}
               >
                 {sug}
