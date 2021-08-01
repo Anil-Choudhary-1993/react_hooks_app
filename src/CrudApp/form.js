@@ -34,11 +34,11 @@ function Form() {
       <h1>Add User</h1>
       <div className="input-group">
         <span className="input-group-title">Name</span>
-        <input className="input-group-field" type="text" value={name} onChange={e => setName(e.target.value)} />
+        <input className="input-group-field" placeholder="Name" type="text" value={name} onChange={e => setName(e.target.value)} />
       </div>
       <div className="input-group">
         <span className="input-group-title">User-Name</span>
-        <input className="input-group-field" type="text" value={userName} onChange={e => setUserName(e.target.value)} />
+        <input className="input-group-field" type="text" placeholder="UserName" value={userName} onChange={e => setUserName(e.target.value)} />
       </div>
       <div className="input-group">
         <button className="button" onClick={saveUser}>Add User</button>
